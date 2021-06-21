@@ -211,6 +211,7 @@ module Spaceship
         when 401
           raise UnauthorizedAccessError, format_errors(response) if response && (response.body || {})['errors']
         when 403
+          puts response.body
           error = (response.body['errors'] || []).first || {}
           error_code = error['code']
           if error_code == "FORBIDDEN.REQUIRED_AGREEMENTS_MISSING_OR_EXPIRED"
